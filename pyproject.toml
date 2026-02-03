@@ -1,0 +1,21 @@
+[project]
+name = "cwb-bronze-layer"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "DidierArchambault",email = "didier.archambault@cima.ca"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyspark (>=4.1.1,<5.0.0)",
+    "delta (>=0.4.2,<0.5.0)",
+    "pytest (>=9.0.2,<10.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "cwb_bronze_layer", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
