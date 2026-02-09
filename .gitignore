@@ -31,7 +31,15 @@ tests.py
 *.log
 
 # specific exclusions
-
+.ipynb*
+.ipynb_checkpoints
+.crc
+metastore_db/
+spark-warehouse/
+derby.log
+data/delta
+data/medallion_1
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
