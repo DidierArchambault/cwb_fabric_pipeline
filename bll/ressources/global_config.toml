@@ -1,0 +1,23 @@
+[landing_zone]
+    base_path         = "/Users/production-didierarchambault/Documents/Workbench_dev/augmentis/CWB_bronze_layer/tests/mock_data/landing_zone/initial_load"
+    layout            = "{source}/{x_center}/{step}/{status}/{table}"
+
+[bronze]
+    db_path           = "fake_temp_path"
+
+[silver]
+    db_path           = "fake_temp_path"
+
+[gold]
+    db_path           = "fake_temp_path"
+
+[tests]
+    gold_path          = "fake_temp_path"
+
+[technicals]
+    Row_Hash_ID = true
+    Ingestion_Run_ID = true
+    Schema_ID = true
+    Ingest_Timestamp= true
+# path actuel selon le namespace
+# landing/claimcenter/initial/ready/cc_claim/
