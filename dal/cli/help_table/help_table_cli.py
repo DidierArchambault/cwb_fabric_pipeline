@@ -11,11 +11,15 @@ HELP_TABLE = r"""
     ||  silver run      Run silver layer                                               ||
     ||  gold run        Run gold layer                                                 ||
     ||                                                                                 ||
+    ||  Common options (all runs)                                                      ||
+    ||  -----------------------                                                        ||
+    ||  --env, -e             ENV selector: prod|dev|qa (default: dev)                 ||
+    ||                                                                                 ||
     ||  Bronze options (bronze run)                                                    ||
     ||  -----------------------                                                        ||
     ||  --xcenter, -xc        X-Center selector: AB|BC|CC|PC (default: CC)             ||
     ||  --work, -w            Work selector: ingest_data|add_technicals|export_to_delta||
-    ||                        Default to all                                          ||
+    ||                        Default to all                                           ||
     ||                                                                                 ||
     ||  Silver options (silver run)                                                    ||
     ||  -----------------------                                                        ||
@@ -33,11 +37,11 @@ HELP_TABLE = r"""
     ||  Examples                                                                       ||
     ||  --------                                                                       ||
     ||  SparkJobRunner bronze run                                                      ||
-    ||  SparkJobRunner bronze run --work ingest_data -xc CC                           ||
-    ||  SparkJobRunner silver run --work all                                          ||
-    ||  SparkJobRunner silver run --work run_one_script                               ||
-    ||  SparkJobRunner gold run --semantic facts                                      ||
-    ||  SparkJobRunner gold run --semantic facts --semantic_one fact_group_1          ||
+    ||  SparkJobRunner bronze run --work ingest_data -xc CC                            ||
+    ||  SparkJobRunner silver run --work all                                           ||
+    ||  SparkJobRunner silver run --work run_one_script                                ||
+    ||  SparkJobRunner gold run --semantic facts                                       ||
+    ||  SparkJobRunner gold run --semantic facts --semantic_one fact_group_1           ||
     ||                                                                                 ||
     |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 

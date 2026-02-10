@@ -1,0 +1,44 @@
+
+# TODO: copy from dev when ready for prod
+
+[landing_zone]
+    path_layout           = "{source}/{x_center}/{step}/{status}/{table}"
+    base_path           = "Files/landing_zone"
+
+
+[bronze]
+    db_path           = "fake_temp_path"
+    path_layout       = "{source}/{x_center}/{step}/{status}/{table}"
+
+
+[bronze_columns_mapping]
+    id = "claim_id"
+    siulifecyclestate = "siulifecyclestate"
+
+
+[silver]
+    db_path           = "fake_temp_path"
+    path_layout       = "{source}/{x_center}/{step}/{status}/{table}" # to be revised
+
+
+[gold]
+    db_path           = "fake_temp_path"
+    path_layout       = "{source}/{x_center}/{step}/{status}/{table}" # to be revised
+
+
+[tests]
+    gold_path          = "fake_temp_path"
+
+
+[technicals]
+    Row_Hash_ID = true
+    Ingestion_Run_ID = true
+    Schema_ID = true
+    Ingest_Timestamp= true
+    Claim_SK= true
+    Hash_Cols = ["id", "siulifecyclestate"]
+
+
+[logging]
+    main_logging_path         = "/Users/production-didierarchambault/Documents/Workbench_dev/augmentis/CWB_bronze_layer/dal/run_logs"
+

@@ -15,19 +15,22 @@ logger = logging.getLogger(__name__)
 # la logique va changer
 # on va execute par couche encore, mais on va faire un dispatch ici
 # et appeler les bons handlers
-def dispatch(args: argparse.Namespace, config: Configuration) -> bool:
+def dispatch(args: argparse.Namespace, config: Configuration, pipeline_run_id:str) -> bool:
     """
     Dispatches the command to the appropriate handler based on parsed arguments.
     Individual run will be called for single layer ops.
     pipeline.run.run will be called for "all" command.\n
     :param args: Parsed command-line arguments.
     :param config: Configuration object.
-    :return: None
+    :return: True if a handler ran successfully, False otherwise.
     """
+
     ctx = RunContext(
+        env=getattr(args, "env", None),
         layer=getattr(args, "layer", None),
         work=getattr(args, "work", None),
         semantic_one=getattr(args, "semantic_one", None),
+        xcenter=getattr(args, "xcenter", None),
     )
 
     print("\n")
@@ -36,12 +39,15 @@ def dispatch(args: argparse.Namespace, config: Configuration) -> bool:
     print("\n")
 
     if not hasattr(args, "handler"):
-        raise RuntimeError("No handler associated with command")
+        logger.error("No handler associated with command")
+        return False
 
     try:
         if args.handler == "bronze_run":
-            from bll.jobs_luncher.bronze_lunch import  bronze_lunch
-            return bool(bronze_lunch(ctx=ctx, config=config))
+            from bll.jobs_luncher.bronze_lunch import bronze_lunch
+            result = bool(bronze_lunch(ctx=ctx, config=config, pipeline_run_id=pipeline_run_id))
+            logger.info("Handler 'bronze_run' finished with success=%s", result)
+            return result
 
         # elif args.handler == "silver_run":
         #     from bsgp._silver.scripts.run.run import run as silver_run
@@ -56,7 +62,8 @@ def dispatch(args: argparse.Namespace, config: Configuration) -> bool:
         #     return bool(all_run(ctx=ctx, config=config))
 
         else:
-            raise RuntimeError(f"Unknown handler: {args.handler}")
+            logger.error("Unknown handler: %s", args.handler)
+            return False
 
     finally:
         # if ctx.clean_after and args.handler == "all_run":

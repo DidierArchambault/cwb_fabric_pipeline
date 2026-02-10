@@ -13,7 +13,7 @@ poetry.lock
 *.db-shm
 *.db-wal
 *.csv
-*.json
+*.*.json
 *.parquet
 *.xlsx
 *.vscode
@@ -21,12 +21,7 @@ poetry.lock
 *.txt
 *.svg
 *.png
-*.skipfornow
 *.deprecated
-bsgp/**/resources/configuration.toml
-tests.py
-/landingzone/**
-!/landingzone/.gitkeep
 *.code-workspace
 *.log
 
@@ -40,6 +35,10 @@ derby.log
 data/delta
 data/medallion_1
 .DS_Store
+
+# specific inclusions
+!.gitkeep
+!ressources/dictionaries/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

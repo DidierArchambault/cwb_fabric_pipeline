@@ -10,14 +10,22 @@ logger = logging.getLogger(__name__)
 
 @dataclass(frozen=True)
 class RunContext:
+    env: str | None
     layer: str | None
     work: str | None
     semantic_one: str | None
+    xcenter: str | None = None
 
 
 def build_parser() -> argparse.ArgumentParser:
     # Parent: common options for the 3 layers
     common = argparse.ArgumentParser(add_help=False)
+    common.add_argument(
+        "--env", "-e",
+        choices=["prod", "dev", "qa"],
+        default="dev",
+        help="Environment selector / Define the environment to run on",
+    )
     p = argparse.ArgumentParser(
         prog="SparkJobRunner",
         description="Runner for Fabric SparkJobs",

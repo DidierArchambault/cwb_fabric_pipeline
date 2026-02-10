@@ -1,14 +1,13 @@
-from pyspark.sql import SparkSession
-from pyspark.sql import DataFrame, Column
-from pyspark.sql import functions as F
-from typing import Dict
-from datetime import date, datetime
+from pyspark.sql import DataFrame
 import logging
 
 
 logger = logging.getLogger(__name__)
 
 def export_to_delta(ctx, config, df: DataFrame, path: str) -> None:
-    df.write.format("delta").mode("overwrite").save(path)
+    df.write.option("overwriteSchema", "true")\
+    .format("delta")\
+    .mode("overwrite")\
+    .save(path)
 
     return None

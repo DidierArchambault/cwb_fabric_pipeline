@@ -7,7 +7,7 @@ class LandingZoneConfiguration:
     Configuration for the landing zone stage of the pipeline.
     """
     base_path: str
-    layout: str
+    path_layout: str
 
 
 def from_dict(data: dict) -> "LandingZoneConfiguration":
@@ -16,7 +16,7 @@ def from_dict(data: dict) -> "LandingZoneConfiguration":
     """
     return LandingZoneConfiguration(
         base_path=data.get("base_path", ""),
-        layout=data.get("layout", ""),
+        path_layout=data.get("path_layout", ""),
     )
 
 
@@ -26,5 +26,5 @@ def to_dict(data: LandingZoneConfiguration) -> dict:
     """
     return {
         "base_path": data.base_path,
-        "layout": data.layout,
+        "path_layout": data.path_layout,
     }

@@ -6,6 +6,7 @@ import configuration.gold_configuration
 import configuration.silver_configuration
 import configuration.tests_configuration
 import configuration.technicals_configuration
+import configuration.logging_configuration
 
 @dataclass
 class Configuration:
@@ -18,6 +19,7 @@ class Configuration:
     gold_configuration: configuration.gold_configuration.GoldConfiguration
     tests_configuration: configuration.tests_configuration.TestsConfiguration
     technicals_configuration: configuration.technicals_configuration.TechnicalsConfiguration
+    logging_configuration: configuration.logging_configuration.LoggingConfiguration
 
 def from_dict(data: dict) -> "Configuration":
     """
@@ -42,6 +44,9 @@ def from_dict(data: dict) -> "Configuration":
         technicals_configuration=configuration.technicals_configuration.from_dict(
             data.get("technicals", {})
         ),
+        logging_configuration=configuration.logging_configuration.from_dict(
+            data.get("logging", {})
+        ),
     )
 
 
@@ -56,4 +61,5 @@ def to_dict(data: Configuration) -> dict:
         "gold": configuration.gold_configuration.to_dict(data.gold_configuration),
         "tests": configuration.tests_configuration.to_dict(data.tests_configuration),
         "technicals": configuration.technicals_configuration.to_dict(data.technicals_configuration),
+        "logging": configuration.logging_configuration.to_dict(data.logging_configuration),
     }

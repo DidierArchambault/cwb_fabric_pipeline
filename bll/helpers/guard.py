@@ -16,5 +16,5 @@ def _guard(step: str, fn: Callable[[], T]) -> T:
     try:
         return fn()
     except Exception:
-        logger.exception(f"[ERROR] {step}")
+        logger.exception(f" {step}")
         raise

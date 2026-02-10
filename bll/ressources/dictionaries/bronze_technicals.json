@@ -1,0 +1,20 @@
+{
+    "technicals_to_add": {
+        "claim_sk": true,
+        "claim_hk": true,
+        "claim_number": true,
+        "record_hash": true,
+        "source_update_ts": true,
+        "ingestion_run_id": true,
+        "source_system": true,
+        "source_env": true,
+        "source_file_path": true,
+        "load_date": true,
+        "processing_ts": true,
+        "effective_from_ts": true,
+        "effective_to_ts": true,
+        "is_current": true
+        },
+    "hash_key_used_cols": ["claim_id", "updatetime", "assignmentdate"],
+    "surrogate_key_used_cols": ["claim_id"]
+}
