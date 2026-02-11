@@ -13,8 +13,9 @@ delta-spark = ">=3.2,<3.3"
 pytest = ">=9.0.2,<10.0.0"
 toml = ">=0.10.2,<0.11.0"
 duckdb = ">=1.4.4,<2.0.0"
-pandas = ">=2.0,<3.0"  # important: pandas 3.0 n'existe pas aujourd'hui
+pandas = ">=2.0,<3.0"
 deltalake = ">=1.4.1,<2.0.0"
+pre-commit = "^4.5.1"
 
 [tool.poetry.scripts]
 main = "dal.main:main"
@@ -22,3 +23,10 @@ main = "dal.main:main"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pre-commit (>=4.5.1,<5.0.0)",
+    "black (>=26.1.0,<27.0.0)",
+    "isort (>=7.0.0,<8.0.0)"
+]
