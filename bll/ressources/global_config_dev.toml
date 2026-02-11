@@ -11,16 +11,6 @@
     bronze_technicals        = "bll/ressources/dictionaries/bronze_technicals.json"
 
 
-[bronze_technicals]
-    Row_Hash_ID        = true
-    Ingestion_Run_ID   = true
-    Schema_ID          = true
-    Ingest_Timestamp   = true
-    Claim_SK           = true
-    Hash_Cols          = ["id", "siulifecyclestate"] # adjust claim_id (we clean before we do technicals)
-    Surrogate_Cols     = ["id", "siulifecyclestate"]
-
-
 [bronze_columns_mapping]
     id                       = "claim_id"
     siulifecyclestate        = "siulifecyclestate"
@@ -42,4 +32,3 @@
 
 [logging]
     main_logging_path         = "/Users/production-didierarchambault/Documents/Workbench_dev/augmentis/CWB_bronze_layer/dal/run_logs"
-

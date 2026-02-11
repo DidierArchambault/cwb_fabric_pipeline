@@ -6,8 +6,8 @@ class GoldConfiguration:
     """
     Configuration for the gold stage of the pipeline.
     """
-    db_path: str
 
+    db_path: str
 
 
 def from_dict(data: dict) -> "GoldConfiguration":
@@ -16,7 +16,6 @@ def from_dict(data: dict) -> "GoldConfiguration":
     """
     return GoldConfiguration(
         db_path=data.get("db_path", ""),
-
     )
 
 
@@ -26,5 +25,4 @@ def to_dict(data: GoldConfiguration) -> dict:
     """
     return {
         "db_path": data.db_path,
-
     }

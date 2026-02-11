@@ -7,7 +7,6 @@ from pyspark.sql import DataFrame
 
 from configuration.configuration import Configuration
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -31,9 +30,7 @@ def _build_cols_rename_map(df_cols: List[str], rename_map: Dict) -> Dict[str, st
     }
 
 
-def rename_cols(
-    config: Configuration, df: DataFrame
-) -> DataFrame:
+def rename_cols(config: Configuration, df: DataFrame) -> DataFrame:
     """
     Renames columns of the DataFrame based on the configuration.
     Specify the columns to rename and their new names in the JSON file (bronze_rename_map.json)

@@ -6,8 +6,8 @@ class LoggingConfiguration:
     """
     Configuration for the logging stage of the pipeline.
     """
-    main_logging_path: str
 
+    main_logging_path: str
 
 
 def from_dict(data: dict) -> "LoggingConfiguration":
@@ -25,5 +25,4 @@ def to_dict(data: LoggingConfiguration) -> dict:
     """
     return {
         "main_logging_path": data.main_logging_path,
-
     }

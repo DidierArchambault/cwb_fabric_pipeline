@@ -6,6 +6,7 @@ logger = logging.getLogger(__name__)
 
 T = TypeVar("T")
 
+
 def _guard(step: str, fn: Callable[[], T]) -> T:
     """
     Executes a function within a guarded context, logging any exceptions that occur.\n

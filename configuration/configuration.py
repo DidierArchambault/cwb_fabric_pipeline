@@ -8,18 +8,25 @@ import configuration.tests_configuration
 import configuration.technicals_configuration
 import configuration.logging_configuration
 
+
 @dataclass
 class Configuration:
     """
     Configuration for the pipeline run.
     """
-    landing_zone_configuration: configuration.landing_zone_configuration.LandingZoneConfiguration
+
+    landing_zone_configuration: (
+        configuration.landing_zone_configuration.LandingZoneConfiguration
+    )
     bronze_configuration: configuration.bronze_configuration.BronzeConfiguration
     silver_configuration: configuration.silver_configuration.SilverConfiguration
     gold_configuration: configuration.gold_configuration.GoldConfiguration
     tests_configuration: configuration.tests_configuration.TestsConfiguration
-    technicals_configuration: configuration.technicals_configuration.TechnicalsConfiguration
+    technicals_configuration: (
+        configuration.technicals_configuration.TechnicalsConfiguration
+    )
     logging_configuration: configuration.logging_configuration.LoggingConfiguration
+
 
 def from_dict(data: dict) -> "Configuration":
     """
@@ -55,11 +62,17 @@ def to_dict(data: Configuration) -> dict:
     Convert the Configuration instance to a dictionary.
     """
     return {
-        "landing_zone": configuration.landing_zone_configuration.to_dict(data.landing_zone_configuration),
+        "landing_zone": configuration.landing_zone_configuration.to_dict(
+            data.landing_zone_configuration
+        ),
         "bronze": configuration.bronze_configuration.to_dict(data.bronze_configuration),
         "silver": configuration.silver_configuration.to_dict(data.silver_configuration),
         "gold": configuration.gold_configuration.to_dict(data.gold_configuration),
         "tests": configuration.tests_configuration.to_dict(data.tests_configuration),
-        "technicals": configuration.technicals_configuration.to_dict(data.technicals_configuration),
-        "logging": configuration.logging_configuration.to_dict(data.logging_configuration),
+        "technicals": configuration.technicals_configuration.to_dict(
+            data.technicals_configuration
+        ),
+        "logging": configuration.logging_configuration.to_dict(
+            data.logging_configuration
+        ),
     }

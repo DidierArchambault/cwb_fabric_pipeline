@@ -9,13 +9,15 @@ import bll.jobs_luncher.silver_lunch
 import bll.jobs_luncher.gold_lunch
 import tests
 
-
 logger = logging.getLogger(__name__)
+
 
 # la logique va changer
 # on va execute par couche encore, mais on va faire un dispatch ici
 # et appeler les bons handlers
-def dispatch(args: argparse.Namespace, config: Configuration, pipeline_run_id:str) -> bool:
+def dispatch(
+    args: argparse.Namespace, config: Configuration, pipeline_run_id: str
+) -> bool:
     """
     Dispatches the command to the appropriate handler based on parsed arguments.
     Individual run will be called for single layer ops.
@@ -45,7 +47,10 @@ def dispatch(args: argparse.Namespace, config: Configuration, pipeline_run_id:st
     try:
         if args.handler == "bronze_run":
             from bll.jobs_luncher.bronze_lunch import bronze_lunch
-            result = bool(bronze_lunch(ctx=ctx, config=config, pipeline_run_id=pipeline_run_id))
+
+            result = bool(
+                bronze_lunch(ctx=ctx, config=config, pipeline_run_id=pipeline_run_id)
+            )
             logger.info("Handler 'bronze_run' finished with success=%s", result)
             return result
 
@@ -68,5 +73,4 @@ def dispatch(args: argparse.Namespace, config: Configuration, pipeline_run_id:st
     finally:
         # if ctx.clean_after and args.handler == "all_run":
         #     _clean_bsg_medaillon(config)
-            logger.info("Last step for loop pliz change ;).")
-
+        logger.info("Last step for loop pliz change ;).")

@@ -21,7 +21,8 @@ def build_parser() -> argparse.ArgumentParser:
     # Parent: common options for the 3 layers
     common = argparse.ArgumentParser(add_help=False)
     common.add_argument(
-        "--env", "-e",
+        "--env",
+        "-e",
         choices=["prod", "dev", "qa"],
         default="dev",
         help="Environment selector / Define the environment to run on",
@@ -33,7 +34,6 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     layers = p.add_subparsers(dest="layer", required=True)
-
 
     # ----------------------------
     # --- BRONZE LAYER PARSING ---
@@ -47,16 +47,17 @@ def build_parser() -> argparse.ArgumentParser:
         parents=[common],
     )
     bronze_run.add_argument(
-        "--xcenter", "-xc",
+        "--xcenter",
+        "-xc",
         choices=["AB", "BC", "CC", "PC"],
         default="CC",
         help="Bronze X-Center selector / Define the xcenter to run on",
     )
     bronze_run.add_argument(
-        "--work", "-w",
+        "--work",
+        "-w",
         choices=[
-            "all"
-            "ingest_data",
+            "all" "ingest_data",
             "add_technicals",
             "export_to_delta",
         ],
@@ -64,7 +65,6 @@ def build_parser() -> argparse.ArgumentParser:
         help="Choose which step to run in bronze",
     )
     bronze_run.set_defaults(handler="bronze_run")
-
 
     # ----------------------------
     # --- SILVER LAYER PARSING ---
@@ -78,13 +78,13 @@ def build_parser() -> argparse.ArgumentParser:
         parents=[common],
     )
     silver_run.add_argument(
-        "--work", "-w",
+        "--work",
+        "-w",
         choices=["all", "run_one_script"],
         default="all",
         help="Silver scope selector / Define the single script to run in config file",
     )
     silver_run.set_defaults(handler="silver_run")
-
 
     # --------------------------
     # --- GOLD LAYER PARSING ---
@@ -104,23 +104,32 @@ def build_parser() -> argparse.ArgumentParser:
         help="Gold scope selector / Select which part of the semantic layer to run",
     )
     gold_run.add_argument(
-        "--work", "-w",
+        "--work",
+        "-w",
         choices=["all", "run_one_script"],
         default="all",
         help="Gold scope selector / Define the single script to run in config file",
     )
     gold_run.add_argument(
-        "--xcenter", "-xc",
+        "--xcenter",
+        "-xc",
         choices=["AB", "BC", "CC", "PC"],
         default="CC",
         help="Gold X-Center selector / Define the xcenter to run on",
     )
     gold_run.add_argument(
-        "--semantic_one", "-so",
-    choices=["fact_group_1", "fact_group_2", "fact_group_3", "dim_group_1", "dim_group_2"],
-    default="all",
-    help="If --semantic_one facts: select one facts family to run",
-)
+        "--semantic_one",
+        "-so",
+        choices=[
+            "fact_group_1",
+            "fact_group_2",
+            "fact_group_3",
+            "dim_group_1",
+            "dim_group_2",
+        ],
+        default="all",
+        help="If --semantic_one facts: select one facts family to run",
+    )
     gold_run.set_defaults(handler="gold_run")
 
     return p

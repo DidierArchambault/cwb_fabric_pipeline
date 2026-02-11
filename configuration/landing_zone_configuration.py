@@ -6,6 +6,7 @@ class LandingZoneConfiguration:
     """
     Configuration for the landing zone stage of the pipeline.
     """
+
     base_path: str
     path_layout: str
 

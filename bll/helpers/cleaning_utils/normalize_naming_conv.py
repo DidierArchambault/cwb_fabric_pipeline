@@ -1,4 +1,3 @@
-
 import logging
 from typing import Any
 
@@ -8,7 +7,7 @@ from bll.helpers.cleaning_utils.remove_space import space_remover
 logger = logging.getLogger(__name__)
 
 
-def normalize_naming_conv(value:Any, naming_convention:str = "snake"):
+def normalize_naming_conv(value: Any, naming_convention: str = "snake"):
     """
     Normalizes the input string according to the specified naming convention.\n
     Uses space_remover to handle spaces based on the target naming convention,
@@ -36,10 +35,14 @@ def normalize_naming_conv(value:Any, naming_convention:str = "snake"):
             elif naming_convention == "camel":
                 parts = value.split(" ")
                 if parts:
-                    value = parts[0].lower() + "".join(p.capitalize() for p in parts[1:] if p)
+                    value = parts[0].lower() + "".join(
+                        p.capitalize() for p in parts[1:] if p
+                    )
                 else:
                     value = value
 
     except Exception as e:
-        logger.error(f"Error processing value '{value}': {e}. Returning original value.")
+        logger.error(
+            f"Error processing value '{value}': {e}. Returning original value."
+        )
     return value

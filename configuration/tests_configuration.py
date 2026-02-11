@@ -6,6 +6,7 @@ class TestsConfiguration:
     """
     Configuration for the tests stage of the pipeline.
     """
+
     tests_dim_path: str
     tests_fact_path: str
     tests_integrity_path: str

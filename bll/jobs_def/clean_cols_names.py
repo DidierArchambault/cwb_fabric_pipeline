@@ -10,7 +10,6 @@ from configuration.configuration import Configuration
 from bll.helpers.cleaning_utils.normalize_naming_conv import normalize_naming_conv
 from bll.helpers.cleaning_utils.remove_space import space_remover
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -21,7 +20,9 @@ def _load_cleaning_specs(config: Configuration) -> Dict:
         return json.load(f)
 
 
-def _build_cols_steps_map(df_cols: List[str], cleaning_rules: Dict) -> Dict[str, List[str]]:
+def _build_cols_steps_map(
+    df_cols: List[str], cleaning_rules: Dict
+) -> Dict[str, List[str]]:
     """
     Returns a dict {col_name: [steps,...]} depending on the all_flag flag.
 
@@ -74,15 +75,11 @@ def _apply_steps_to_col_name(col_name: str, steps: List[str]) -> str:
         elif step == "upper":
             value = normalize_case(value, "upper")
         else:
-            logger.warning(
-                "Unknown cleaning step '%s' for column '%s'", step, col_name
-            )
+            logger.warning("Unknown cleaning step '%s' for column '%s'", step, col_name)
     return value
 
 
-def clean_col_names(
-    config: Configuration, df: DataFrame
-) -> DataFrame:
+def clean_col_names(config: Configuration, df: DataFrame) -> DataFrame:
     """
     Cleans the column names of the DataFrame according to the JSON rules.
 

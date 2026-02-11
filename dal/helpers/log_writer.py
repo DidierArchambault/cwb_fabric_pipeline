@@ -7,11 +7,10 @@ from pathlib import Path
 # from bll.helpers.path_maker_temp import build_outlogs_path
 from configuration.configuration import Configuration
 
-
 logger = logging.getLogger(__name__)
 
 
-def log_writer(ctx, config: Configuration ,pipeline_run_id: str) -> logging.Logger:
+def log_writer(ctx, config: Configuration, pipeline_run_id: str) -> logging.Logger:
     file_name = (
         f"{ctx.layer}_"
         f"{ctx.work}_"

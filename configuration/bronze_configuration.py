@@ -6,6 +6,7 @@ class BronzeConfiguration:
     """
     Configuration for the bronze stage of the pipeline.
     """
+
     db_path: str
     path_layout: str
     columns_to_clean_rules: str
@@ -22,7 +23,7 @@ def from_dict(data: dict) -> "BronzeConfiguration":
         path_layout=data.get("path_layout", ""),
         columns_to_clean_rules=data.get("columns_to_clean_rules", ""),
         columns_rename_map=data.get("columns_rename_map", ""),
-        bronze_technicals=data.get("bronze_technicals", "")
+        bronze_technicals=data.get("bronze_technicals", ""),
     )
 
 
@@ -36,5 +37,4 @@ def to_dict(data: BronzeConfiguration) -> dict:
         "columns_to_clean_rules": data.columns_to_clean_rules,
         "columns_rename_map": data.columns_rename_map,
         "bronze_technicals": data.bronze_technicals,
-
     }

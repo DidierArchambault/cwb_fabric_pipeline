@@ -6,6 +6,7 @@ class TechnicalsConfiguration:
     """
     Configuration for the bronze stage of the pipeline.
     """
+
     Row_Hash_ID: bool
     Ingestion_Run_ID: bool
     Schema_ID: bool

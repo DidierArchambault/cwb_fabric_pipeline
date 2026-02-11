@@ -11,6 +11,7 @@ def _extract_line_from_duckdb_error(msg: str) -> int | None:
     m = re.search(r"\bLINE\s+(\d+)\b", msg)
     return int(m.group(1)) if m else None
 
+
 def _print_context(sql_text: str, line: int, context: int = 5) -> None:
     """
     Prints context lines around a specific line number in the given SQL text.
@@ -28,7 +29,9 @@ def _print_context(sql_text: str, line: int, context: int = 5) -> None:
 
 
 # -------- Main functions for DuckDB Activities --------
-def register_parquet_views(con: duckdb.DuckDBPyConnection, parquet_root: Path, schema: str = "bronze") -> list[str]:
+def register_parquet_views(
+    con: duckdb.DuckDBPyConnection, parquet_root: Path, schema: str = "bronze"
+) -> list[str]:
     """
     Registers parquet files as views in DuckDB. Parquets are searched recursively
     under the specified root directory and can then be queried as tables under the given schema.
@@ -37,17 +40,17 @@ def register_parquet_views(con: duckdb.DuckDBPyConnection, parquet_root: Path, s
     :param schema: Schema name to register the views under.
     :return: List of created view names.
     """
-    parquet_root = parquet_root.resolve() # make sure we have absolute path
+    parquet_root = parquet_root.resolve()  # make sure we have absolute path
     con.execute(f'CREATE SCHEMA IF NOT EXISTS "{schema}";')
 
-    files = sorted(parquet_root.rglob("*.parquet")) # make sure order is consistent
+    files = sorted(parquet_root.rglob("*.parquet"))  # make sure order is consistent
     if files == []:
         raise ValueError(f"Warning: no parquet files found in {parquet_root}")
 
     created = []
     for f in files:
-        table = f.stem # remove extension
-        path = f.as_posix() # duckdb needs forward slashes
+        table = f.stem  # remove extension
+        path = f.as_posix()  # duckdb needs forward slashes
 
         con.execute(f"""
             CREATE OR REPLACE VIEW "{schema}".{table} AS
