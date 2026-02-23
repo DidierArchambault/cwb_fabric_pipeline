@@ -1,0 +1,23 @@
+[execution]
+env = "prod"
+layer = "bronze"
+
+[storage]
+landing_base = "Files/landing/"
+landing_layout = "{x_center}/{step}/{status}/{table}"
+
+bronze_db = "abfss://wcbns_dev@onelake.dfs.fabric.microsoft.com/bronze_lakehouse.Lakehouse/Tables"
+bronze_files = "unused for now"
+
+[rules]
+rule_set_id = "2026-02-13-a"
+
+cleaning_json = "abfss://wcbns_dev@onelake.dfs.fabric.microsoft.com/bronze_configuration_lakehouse.Lakehouse/Files/config_bz/rules/bronze_cleaning.json"
+rename_map_json = "abfss://wcbns_dev@onelake.dfs.fabric.microsoft.com/bronze_configuration_lakehouse.Lakehouse/Files/config_bz/rules/bronze_rename_map.json"
+technicals_json = "abfss://wcbns_dev@onelake.dfs.fabric.microsoft.com/bronze_configuration_lakehouse.Lakehouse/Files/config_bz/rules/bronze_technicals.json"
+
+[observability]
+runs_logs = "abfss://wcbns_dev@onelake.dfs.fabric.microsoft.com/bronze_lakehouse.Lakehouse/Files/logs/runs_logs"
+events_logs = "abfss://wcbns_dev@onelake.dfs.fabric.microsoft.com/bronze_lakehouse.Lakehouse/Files/logs/events_logs"
+artifacts_root = "unused for now"
+log_level = "INFO"

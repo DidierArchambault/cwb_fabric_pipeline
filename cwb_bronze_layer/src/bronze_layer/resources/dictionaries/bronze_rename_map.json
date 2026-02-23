@@ -1,0 +1,6 @@
+{
+    "columns_to_rename": {
+        "id": "claim_id"
+
+    }
+}

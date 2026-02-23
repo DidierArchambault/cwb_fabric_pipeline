@@ -1,0 +1,18 @@
+{
+    "columns_to_clean": {
+        "all_flag": {
+            "clean": true,
+            "steps": ["remove_space", "capitalize", "lower"]
+        },
+        "columns_list": {
+            "id": {
+                "clean": true,
+                "steps": ["remove_space", "camel"]
+            },
+            "reporteddate": {
+                "clean": true,
+                "steps": ["remove_space", "camel"]
+            }
+        }
+    }
+}

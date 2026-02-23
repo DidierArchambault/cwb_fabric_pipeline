@@ -1,0 +1,20 @@
+[execution]
+env = "prod"
+layer = "bronze"
+
+[storage]
+landing_layout = "{x_center}/{step}/{status}/{table}"
+landing_base = "tests/fixtures/Files/landing_zone/initial_load" # fake input
+bronze_db = "_local_files/_temp_sink/bronze_lakehouse/Tables" # temp fake output
+bronze_files = "_local_files/_temp_sink/bronze_lakehouse/Files" # temp fake output
+
+[rules]
+cleaning_json = "src/bronze_layer/resources/dictionaries/bronze_cleaning.json"
+rename_map_json = "src/bronze_layer/resources/dictionaries/bronze_rename_map.json"
+technicals_json = "src/bronze_layer/resources/dictionaries/bronze_technicals.json"
+
+[observability]
+runs_logs = "_local_files/_logs/pipeline_runs"
+events_logs = "_local_files/_logs/pipeline_events"
+artifacts_root = "_local_files/runs/bronze"
+log_level = "INFO"

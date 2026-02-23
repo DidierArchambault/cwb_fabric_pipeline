@@ -1,0 +1,32 @@
+[project]
+name = "cwb-bronze-layer"
+version = "0.1.0"
+authors = [
+  { name = "DidierArchambault", email = "didier.archambault@augmentisconsulting.com" }
+]
+readme = "README.md"
+
+dependencies = [
+  "pyspark==3.5.5",
+  "delta-spark>=3.2,<3.3",
+  "toml>=0.10.2,<0.11.0",
+  "duckdb>=1.4.4,<2.0.0",
+  "pandas>=2.0,<3.0",
+  "deltalake>=1.4.1,<2.0.0",
+  "notebook-utils>=0.2.0",
+  "python-dotenv>=1.2.1,<2.0.0",
+]
+
+[project.scripts]
+bronze = "bronze_layer.dal.main:main"
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "bronze_layer"
+module-root = "src"
+# source-include = [
+#   "src/bronze_layer/resources/**",
+# ]
